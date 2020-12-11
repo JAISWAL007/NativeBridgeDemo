@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Screen Should render button screen 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "backgroundColor": "black",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+        }
+      }
+    >
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
+        testID="back-button"
+      >
+        <View
+          accessible={true}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#fff",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+      <Text
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 28,
+            "margin": 10,
+            "textAlign": "center",
+          }
+        }
+      >
+        Button screen
+      </Text>
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
+        testID="user-details"
+      >
+        <View
+          accessible={true}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#fff",
+                  "fontSize": 30,
+                },
+                undefined,
+                Object {
+                  "fontFamily": "FontAwesome",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+    </View>
+  </View>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#66b3ff",
+          "fontSize": 16,
+          "margin": 15,
+          "textAlign": "center",
+        },
+        Object {
+          "color": "yellow",
+        },
+      ]
+    }
+  >
+    4 variations of button
+  </Text>
+  <Text
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "color": "#66b3ff",
+          "fontSize": 16,
+          "margin": 15,
+          "textAlign": "center",
+        },
+      ]
+    }
+    testID="button-1"
+  >
+    Press me
+  </Text>
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="button-2"
+  >
+    <View
+      accessible={true}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 10,
+          "justifyContent": "center",
+          "margin": 10,
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#66b3ff",
+            "fontSize": 16,
+            "margin": 15,
+            "textAlign": "center",
+          }
+        }
+      >
+         
+        Press me
+      </Text>
+    </View>
+  </RNGestureHandlerButton>
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+  >
+    <View
+      accessible={true}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#33adff",
+          "borderRadius": 10,
+          "justifyContent": "center",
+          "margin": 10,
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#66b3ff",
+              "fontSize": 16,
+              "margin": 15,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#fff",
+            },
+          ]
+        }
+        testID="button-3"
+      >
+         
+        Press me
+      </Text>
+    </View>
+  </RNGestureHandlerButton>
+  <View
+    onLayout={[Function]}
+    style={
+      Array [
+        Object {
+          "borderRadius": 50,
+          "borderWidth": 1,
+          "justifyContent": "center",
+          "margin": 5,
+        },
+        Object {
+          "backgroundColor": "black",
+          "borderColor": "#333",
+        },
+      ]
+    }
+  >
+    <Text
+      importantForAccessibility=""
+      style={
+        Array [
+          Object {
+            "alignSelf": "center",
+            "position": "absolute",
+          },
+          Object {
+            "color": "#33adff",
+            "fontSize": 20,
+          },
+        ]
+      }
+    >
+      Slide me to continue
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;

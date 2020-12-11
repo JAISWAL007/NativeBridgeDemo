@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -28,17 +29,23 @@ const DummyScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.subContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          testID="back-button">
           <Icon name="angle-left" color="#000" size={30} />
         </TouchableOpacity>
         <Text style={styles.title}>{Strings.DASHBOARD}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('ButtonScreen')}>
+        <TouchableOpacity
+          testID="next-button"
+          onPress={() => navigation.navigate('ButtonScreen')}>
           <Icon name="angle-right" color="#000" size={30} />
         </TouchableOpacity>
       </View>
       <View style={styles.displayStyle}>
         <Text>Welcome {storeUserName}</Text>
-        <Text>Running on {isEmulator ? 'Emulator' : 'Devices'}</Text>
+        <Text testID="displayLabel">
+          Running on {isEmulator ? 'Emulator' : 'Devices'}
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -74,4 +81,10 @@ const styles = StyleSheet.create({
   },
 });
 
+DummyScreen.prototype = {
+  navigation: PropTypes.objectOf({
+    navigate: PropTypes.func,
+    goBack: PropTypes.func,
+  }).isRequired,
+};
 export default DummyScreen;

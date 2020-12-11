@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {userAction} from '../redux/actions';
 import {useDispatch} from 'react-redux';
@@ -16,7 +23,7 @@ const UserDetailsScreen = ({navigation}) => {
         screen: 'Dashboard',
       });
     } else {
-      alert(Strings.PLEASE_ENTER_NAME);
+      Alert.alert('Error', Strings.PLEASE_ENTER_NAME, [{text: 'Ok'}]);
     }
   };
 
@@ -31,12 +38,16 @@ const UserDetailsScreen = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.titleStyle}>{Strings.USER_NAME}</Text>
       <TextInput
+        testID="input-field"
         onChangeText={validateUserName}
         placeholder={Strings.ENTER_USER_NAME}
         style={styles.inputStyle}
         returnKeyType="done"
       />
-      <TouchableOpacity onPress={onPress} style={styles.wrapperCustom}>
+      <TouchableOpacity
+        onPress={onPress}
+        style={styles.wrapperCustom}
+        testID="button">
         <Text style={styles.buttonTitleStyle}>{Strings.NEXT}</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -84,4 +95,9 @@ const styles = StyleSheet.create({
   },
 });
 
+UserDetailsScreen.prototype = {
+  navigation: PropTypes.objectOf({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
 export default UserDetailsScreen;

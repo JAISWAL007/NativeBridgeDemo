@@ -1,5 +1,6 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import PropTypes from 'prop-types';
+import {SafeAreaView, StyleSheet, Text, View, Alert} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import SwipeButton from 'rn-swipe-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,18 +10,22 @@ const DiamondIcon = () => <Icon name="diamond" color="#fff" size={20} />;
 
 const ButtonScreen = ({navigation}) => {
   const onPress = () => {
-    alert(Strings.COMING_SOON);
+    Alert.alert('Error', Strings.COMING_SOON, [{text: 'Ok'}]);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.subContainer}>
         <View style={styles.headerStyle}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity
+            testID="back-button"
+            onPress={() => navigation.goBack()}>
             <Icon name="angle-left" color="#fff" size={30} />
           </TouchableOpacity>
           <Text style={styles.title}>{Strings.BUTTON_SCREEN}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('UserDetails')}>
+          <TouchableOpacity
+            testID="user-details"
+            onPress={() => navigation.navigate('UserDetails')}>
             <Icon name="home" color="#fff" size={30} />
           </TouchableOpacity>
         </View>
@@ -28,23 +33,30 @@ const ButtonScreen = ({navigation}) => {
       <Text style={[styles.buttonTextStyle, styles.colorText]}>
         {Strings.VARIATION_OF_BUTTON}
       </Text>
-      <Text style={[styles.buttonTextStyle]} onPress={onPress}>
+      <Text
+        style={[styles.buttonTextStyle]}
+        onPress={onPress}
+        testID="button-1">
         {Strings.PRESS_ME}
       </Text>
       <TouchableOpacity
         style={[styles.buttonWrapperStyle, styles.buttonBackgroundColor]}
-        onPress={onPress}>
+        onPress={onPress}
+        testID="button-2">
         <Text style={styles.buttonTextStyle}> {Strings.PRESS_ME}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={onPress} style={styles.buttonWrapperStyle}>
-        <Text style={[styles.buttonTextStyle, styles.textColor]}>
+        <Text
+          style={[styles.buttonTextStyle, styles.textColor]}
+          testID="button-3">
           {' '}
           {Strings.PRESS_ME}
         </Text>
       </TouchableOpacity>
       <SwipeButton
         railBackgroundColor="black"
+        testID="slider-button"
         thumbIconStyles={styles.borderRadius}
         thumbIconComponent={DiamondIcon}
         railBorderColor="#333"
@@ -119,4 +131,9 @@ const styles = StyleSheet.create({
   },
 });
 
+ButtonScreen.prototype = {
+  navigation: PropTypes.objectOf({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
 export default ButtonScreen;

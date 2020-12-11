@@ -1,7 +1,7 @@
 import {USER_DETAILS} from '../actionTypes';
 
 const initialState = {
-  username: 'sdc',
+  name: 'dummy name',
 };
 
 export default function (state = initialState, action) {
