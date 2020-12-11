@@ -114,12 +114,14 @@ exports[`Dashboard Screen Should render Dashboard screen 1`] = `
       }
     }
   >
-    <Text>
+    <Text
+      testID="store-label"
+    >
       Welcome 
       dummy name
     </Text>
     <Text
-      testID="displayLabel"
+      testID="display-label"
     >
       Running on 
       Emulator

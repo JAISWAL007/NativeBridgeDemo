@@ -6,8 +6,9 @@ import {
   render,
 } from '@testing-library/react-native';
 import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import Dashboard from './Dashboard';
-import store from '../redux/store';
+import reducers from '../redux/reducers';
 
 describe('Dashboard Screen', () => {
   const mockNavigation = {
@@ -26,21 +27,24 @@ describe('Dashboard Screen', () => {
     jest.clearAllMocks();
   });
 
+  const renderWithRedux = (
+    component,
+    {initialState, store = createStore(reducers, initialState)} = {},
+  ) => {
+    return {
+      ...render(<Provider store={store}>{component}</Provider>),
+    };
+  };
+
   it('Should render Dashboard screen', async () => {
-    const tree = render(
-      <Provider store={store}>
-        <Dashboard navigation={mockNavigation} />
-      </Provider>,
-    );
+    const tree = renderWithRedux(<Dashboard navigation={mockNavigation} />);
     await flushMicrotasksQueue();
     expect(tree).toMatchSnapshot();
   });
 
   it('Should able to go back when user click on back arrow button', async () => {
-    const {getByTestId} = render(
-      <Provider store={store}>
-        <Dashboard navigation={mockNavigation} />
-      </Provider>,
+    const {getByTestId} = renderWithRedux(
+      <Dashboard navigation={mockNavigation} />,
     );
     await flushMicrotasksQueue();
     const backButton = getByTestId('back-button');
@@ -49,10 +53,8 @@ describe('Dashboard Screen', () => {
   });
 
   it('Should able to navigate to button screen when user click on next button', async () => {
-    const {getByTestId} = render(
-      <Provider store={store}>
-        <Dashboard navigation={mockNavigation} />
-      </Provider>,
+    const {getByTestId} = renderWithRedux(
+      <Dashboard navigation={mockNavigation} />,
     );
     await flushMicrotasksQueue();
     const homeButton = getByTestId('next-button');
@@ -61,13 +63,11 @@ describe('Dashboard Screen', () => {
   });
 
   it('Should able to call native bridge and display when emulator', async () => {
-    const {getByTestId} = render(
-      <Provider store={store}>
-        <Dashboard navigation={mockNavigation} />
-      </Provider>,
+    const {getByTestId} = renderWithRedux(
+      <Dashboard navigation={mockNavigation} />,
     );
     await flushMicrotasksQueue();
-    const label = getByTestId('displayLabel');
+    const label = getByTestId('display-label');
     expect(label.props.children).toStrictEqual(['Running on ', 'Emulator']);
   });
 
@@ -77,13 +77,20 @@ describe('Dashboard Screen', () => {
     NativeModules.DeviceDetails = {
       isEmulator,
     };
-    const {getByTestId} = render(
-      <Provider store={store}>
-        <Dashboard navigation={mockNavigation} />
-      </Provider>,
+    const {getByTestId} = renderWithRedux(
+      <Dashboard navigation={mockNavigation} />,
     );
     await flushMicrotasksQueue();
-    const label = getByTestId('displayLabel');
+    const label = getByTestId('display-label');
     expect(label.props.children).toStrictEqual(['Running on ', 'Devices']);
+  });
+
+  it('Should render with redux with custom store', async () => {
+    const {getByTestId} = renderWithRedux(
+      <Dashboard navigation={mockNavigation} />,
+    );
+    await flushMicrotasksQueue();
+    const label = getByTestId('store-label');
+    expect(label.props.children).toStrictEqual(['Welcome ', 'dummy name']);
   });
 });

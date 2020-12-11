@@ -42,8 +42,8 @@ const DummyScreen = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.displayStyle}>
-        <Text>Welcome {storeUserName}</Text>
-        <Text testID="displayLabel">
+        <Text testID="store-label">Welcome {storeUserName}</Text>
+        <Text testID="display-label">
           Running on {isEmulator ? 'Emulator' : 'Devices'}
         </Text>
       </View>

@@ -11,13 +11,6 @@ describe('User Details Screen', () => {
     goBack: jest.fn(),
   };
 
-  beforeEach(() => {
-    jest.mock('react-redux', () => ({
-      useSelector: jest.fn((fn) => fn()),
-      useDispatch: () => jest.fn(),
-    }));
-  });
-
   it('Should render User Details Screen ', () => {
     const tree = render(
       <Provider store={store}>
